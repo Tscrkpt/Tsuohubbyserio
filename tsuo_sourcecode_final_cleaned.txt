@@ -1,0 +1,64 @@
+
+-- Inicialização e Verificação de Execução
+if getgenv().ScriptExecute then return print('Script Already Execute') end
+getgenv().ScriptExecute = true
+
+-- Verificação e Destruição de Gui Existente
+repeat task.wait() until game:IsLoaded() and game.Players and game.Players.LocalPlayer  
+if game.CoreGui:FindFirstChild("Mo Mo Be") then
+    game.CoreGui:FindFirstChild("Mo Mo Be"):Destroy()
+end
+
+-- Proteções Contra Adulteração
+if islclosure(getgenv().setfenv) then game.Players.LocalPlayer:Kick("MMB 1") while true do end end
+if islclosure(getgenv().tostring) then game.Players.LocalPlayer:Kick("MMB 2") while true do end end
+
+-- Criação da UI
+local object = {}
+object.TsuoHub = Instance.new("ScreenGui", {
+    Name = "Mo Mo Be",
+    Parent = game.CoreGui,
+    ZIndexBehavior = Enum.ZIndexBehavior.Sibling,
+})
+
+object.Main = Instance.new("Frame", {
+    AnchorPoint = Vector2.new(0.5, 0.5),
+    BackgroundColor3 = Color3.fromRGB(17, 24, 39),
+    BorderColor3 = Color3.fromRGB(0, 0, 0),
+    BorderSizePixel = 0,
+    Name = "Main",
+    Parent = object.TsuoHub,
+    Position = UDim2.new(0.492770165, 0, 0.5, 0),
+    Size = UDim2.new(0, 380, 0, 200),
+})
+
+object.GetKey = Instance.new("TextButton", {
+    BackgroundColor3 = Color3.fromRGB(31, 41, 55),
+    BorderColor3 = Color3.fromRGB(0, 0, 0),
+    BorderSizePixel = 0,
+    Font = Enum.Font.Gotham,
+    Name = "GetKey",
+    Parent = object.Main,
+    Position = UDim2.new(0.51810205, 0, 0.742947996, 0),
+    Size = UDim2.new(0, 173, 0, 39),
+    Text = "Get Key",
+    TextColor3 = Color3.fromRGB(225, 225, 225),
+    TextSize = 14.000,
+})
+
+object.TextBox = Instance.new("TextBox", {
+    BackgroundColor3 = Color3.fromRGB(21, 31, 45),
+    BorderColor3 = Color3.fromRGB(0, 0, 0),
+    BorderSizePixel = 0,
+    Font = Enum.Font.SourceSans,
+    Parent = object.Main,
+    PlaceholderColor3 = Color3.fromRGB(178, 178, 178),
+    PlaceholderText = "Enter your key here..",
+    Position = UDim2.new(0.0331600793, 0, 0.414063871, 0),
+    Size = UDim2.new(0, 357, 0, 50),
+    Text = "",
+    TextColor3 = Color3.fromRGB(255, 255, 255),
+    TextSize = 14.000,
+    TextTruncate = Enum.TextTruncate.AtEnd,
+    ClearTextOnFocus = false,
+})
